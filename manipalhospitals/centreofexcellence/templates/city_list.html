@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Hospital</title>
+    <script>
+        function loadLocations(city) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('city', city);
+            window.location.href = url.toString();
+        }
+        function goToHospital(hospitalId) {
+            if (hospitalId) {
+                window.location.href = '/hospitals/' + hospitalId + '/';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Select Hospital</h1>
+    <form method="GET">
+        <label for="city">City:</label>
+        <select name="city" id="city" onchange="loadLocations(this.value)">
+            <option value="">Select a City</option>
+            {% for code, name in cities %}
+                <option value="{{ code }}" {% if selected_city == code %}selected{% endif %}>{{ name }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    {% if hospital_by_location %}
+    <form>
+        <label for="location">Location:</label>
+        <select id="location_select" onchange="goToHospital(this.value)">
+            <option value="">Select a Location</option>
+            {% for location, hospitals in hospital_by_location.items %}
+                {% for hospital in hospitals %}
+                    <option value="{{ hospital.id }}">{{ location }}</option>
+                {% endfor %}
+            {% endfor %}
+        </select>
+    </form>
+    {% endif %}
+</body>
+</html>
+
+
+
+
+
+
+

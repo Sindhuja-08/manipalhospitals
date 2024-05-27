@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ hospital.name }} Details</title>
+</head>
+<body>
+    <h1>{{ hospital.name }}</h1>
+    <p> City: {{ hospital.city }}</p>
+    <p>Location: {{ hospital.location }}</p>
+    <p>Contact:{{ hospital.contact }}</p>
+    <a href="{% url 'city_list' %}">Back to City List</a>
+</body>
+</html>

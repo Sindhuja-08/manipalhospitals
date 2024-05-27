@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Locations List</title>
+</head>
+<body>
+    <h1>Locations in {{ city }}</h1>
+    <ul>
+        {% for location ,hospital_id in location_dict.items %}
+            <li><a href="{% url 'hospital_detail' hospital.id %}">{{ location }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'city_list' %}">Back to City List</a>
+</body>
+</html>
+
+
